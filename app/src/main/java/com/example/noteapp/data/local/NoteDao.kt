@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface NoteDao {
 
-    @Query("SELECT * FROM note")
+    @Query("SELECT * FROM Note")
     fun getNotes(): Flow<List<Note>>
 
-    @Query("SELECT * FROM note WHERE id = :id")
+    @Query("SELECT * FROM Note WHERE id = :id")
     suspend fun getNoteById(id: Int): Note?
 
     @Upsert
