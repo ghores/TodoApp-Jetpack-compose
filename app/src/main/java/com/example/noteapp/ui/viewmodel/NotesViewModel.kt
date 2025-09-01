@@ -18,9 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NotesViewModel @Inject constructor(
-    private val noteUseCases: NoteUseCases
-) : ViewModel() {
+class NotesViewModel @Inject constructor(private val noteUseCases: NoteUseCases) : ViewModel() {
 
     private val _notesState = mutableStateOf(NotesState())
     val notesState: State<NotesState> = _notesState
@@ -43,18 +41,21 @@ class NotesViewModel @Inject constructor(
                 }
                 getNotes(event.noteOrder)
             }
+
             is NotesEvent.DeleteNote -> {
                 viewModelScope.launch {
                     noteUseCases.deleteNote(event.note)
                     recentlyDeletedNote = event.note
                 }
             }
+
             is NotesEvent.RestoreNote -> {
                 viewModelScope.launch {
                     noteUseCases.addNote(recentlyDeletedNote ?: return@launch)
                     recentlyDeletedNote = null
                 }
             }
+
             is NotesEvent.ToggleOrderSection -> {
                 _notesState.value = notesState.value.copy(
                     isOrderSectionVisible = !notesState.value.isOrderSectionVisible
