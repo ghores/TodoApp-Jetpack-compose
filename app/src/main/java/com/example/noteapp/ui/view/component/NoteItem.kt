@@ -110,11 +110,13 @@ private fun NoteItemTest() {
         note = Note(
             title = "Welcome",
             content = "ksdfjldsjfldskhfldskhlsfhfdslfh",
-            System.currentTimeMillis(),
+            timestamp = System.currentTimeMillis(),
             color = Constance.noteColors.random().toArgb(),
             id = 0,
         ),
-        modifier = Modifier.fillMaxWidth().height(400.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(400.dp)
     ) {
 
     }
