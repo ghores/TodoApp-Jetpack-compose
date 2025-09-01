@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.navigation.compose.rememberNavController
 import com.example.noteapp.ui.navigation.NavGraph
-import com.example.noteapp.ui.theme.CleanArchitectureNoteAppTheme
+import com.example.noteapp.ui.theme.NoteAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CleanArchitectureNoteAppTheme {
+            NoteAppTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     val navController = rememberNavController()
                     NavGraph(navController = navController)
