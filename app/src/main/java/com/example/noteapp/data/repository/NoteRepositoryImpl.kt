@@ -4,9 +4,7 @@ import com.example.noteapp.data.local.NoteDao
 import com.example.noteapp.data.model.Note
 import kotlinx.coroutines.flow.Flow
 
-class NoteRepositoryImpl(
-    private val dao: NoteDao
-) : NoteRepository {
+class NoteRepositoryImpl(private val dao: NoteDao) : NoteRepository {
 
     override fun getNotes(): Flow<List<Note>> = dao.getNotes()
 
