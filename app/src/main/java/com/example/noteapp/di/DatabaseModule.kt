@@ -1,6 +1,6 @@
 package com.example.noteapp.di
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.example.noteapp.data.local.NoteDatabase
 import com.example.noteapp.data.model.NoteUseCases
@@ -14,6 +14,7 @@ import com.example.noteapp.utils.Constance
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -23,11 +24,12 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(app: Application): NoteDatabase = Room.databaseBuilder(
-        app,
-        NoteDatabase::class.java,
-        Constance.DATABASE_NAME
-    ).build()
+    fun provideNoteDatabase(@ApplicationContext context: Context): NoteDatabase =
+        Room.databaseBuilder(
+            context,
+            NoteDatabase::class.java,
+            Constance.DATABASE_NAME
+        ).build()
 
     @Provides
     @Singleton
